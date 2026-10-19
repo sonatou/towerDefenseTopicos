@@ -11,14 +11,13 @@ public class EnemyTests
     [SetUp]
     public void Setup()
     {
-        // Executado automaticamente antes de cada teste
         defaultPath = new Vector2[] { new Vector2(0, 0), new Vector2(1, 1) };
     }
 
     [Test]
     public void TakeDamage_ReduzHpCorretamente()
     {
-        // Arrange: Preparar o ambiente
+        // Arrange: Preparar
         var enemy = new Enemy(10, defaultPath);
 
         // Act: Executar a ação
@@ -34,7 +33,7 @@ public class EnemyTests
         // Arrange
         var enemy = new Enemy(5, defaultPath);
 
-        // Act: Aplicar dano superior à vida máxima (Edge Case)
+        // Act: Aplicar dano superior à vida máxima
         enemy.TakeDamage(10);
 
         // Assert

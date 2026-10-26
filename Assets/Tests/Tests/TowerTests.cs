@@ -38,7 +38,7 @@ public class TowerTests
     [Test]
     public void FindTarget_RetornaNullQuandoInimigosForaDoAlcance()
     {
-        // Arrange (Edge Case: Inimigo longe do alcance)
+        // Arrange
         var stats = new TowerStats { range = 2.5f };
         var tower = new Tower(0, 0, stats);
         var farEnemy = new Enemy(10, pathOutOfRange);
@@ -55,15 +55,15 @@ public class TowerTests
     [Test]
     public void Shoot_RespeitaTempoDeRecarga()
     {
-        // Arrange (Configurado sem chance de crítico para testar dano previsível)
+        // Arrange
         var stats = new TowerStats { baseDamage = 5, cooldown = 1.0f, critChance = 0f };
         var tower = new Tower(0, 0, stats, critRoll: () => 1.0);
         var enemy = new Enemy(10, pathInCoverage);
 
-        // Act 1: Primeiro tiro no alvo
+        // Act 1
         int firstDamage = tower.Shoot(enemy);
 
-        // Act 2: Tentativa de tiro imediato durante a recarga (Edge Case)
+        // Act 2
         int secondDamage = tower.Shoot(enemy);
 
         // Assert

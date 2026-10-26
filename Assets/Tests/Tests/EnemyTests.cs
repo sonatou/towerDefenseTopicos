@@ -17,26 +17,20 @@ public class EnemyTests
     [Test]
     public void TakeDamage_ReduzHpCorretamente()
     {
-        // Arrange: Preparar
         var enemy = new Enemy(10, defaultPath);
 
-        // Act: Executar a ação
         enemy.TakeDamage(3);
 
-        // Assert: Verificar o resultado esperado
         Assert.AreEqual(7, enemy.Hp, "O HP atual não foi reduzido corretamente após o dano.");
     }
 
     [Test]
     public void TakeDamage_HpNaoCaiAbaixoDeZero()
     {
-        // Arrange
         var enemy = new Enemy(5, defaultPath);
 
-        // Act: Aplicar dano superior à vida máxima
         enemy.TakeDamage(10);
 
-        // Assert
         Assert.AreEqual(0, enemy.Hp, "O HP do inimigo não pode ser negativo.");
         Assert.IsTrue(enemy.IsDead, "O inimigo deveria ser considerado morto.");
     }
@@ -44,10 +38,8 @@ public class EnemyTests
     [Test]
     public void TakeDamage_DanoNegativoGeraExcecao()
     {
-        // Arrange
         var enemy = new Enemy(10, defaultPath);
 
-        // Act & Assert: Verificar comportamento de segurança
         Assert.Throws<ArgumentOutOfRangeException>(() => enemy.TakeDamage(-5), "Aplicar dano negativo deve gerar uma exceção.");
     }
 }

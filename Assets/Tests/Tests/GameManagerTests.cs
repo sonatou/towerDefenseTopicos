@@ -22,7 +22,7 @@ public class GameManagerTests
         // Act
         bool result = game.TrySpend(40);
 
-        // Assert: Verifica se retornou true e se o saldo atualizou
+        // Assert
         Assert.IsTrue(result, "A transação deveria ser aprovada.");
         Assert.AreEqual(60, game.Gold, "O saldo não foi deduzido corretamente.");
     }
@@ -33,10 +33,10 @@ public class GameManagerTests
         // Arrange
         var game = new GameManager(defaultSettings);
 
-        // Act: Tentar gastar 150 tendo apenas 100 (Edge Case)
+        // Act
         bool result = game.TrySpend(150);
 
-        // Assert: Verifica se a compra foi bloqueada e o saldo mantido
+        // Assert
         Assert.IsFalse(result, "A transação deveria ser recusada por falta de saldo.");
         Assert.AreEqual(100, game.Gold, "O saldo não deveria ser alterado em uma transação falha.");
     }
@@ -47,7 +47,7 @@ public class GameManagerTests
         // Arrange
         var game = new GameManager(defaultSettings);
 
-        // Act & Assert: Tentar subverter a economia passando valor negativo (Edge Case)
+        // Act & Assert
         Assert.Throws<ArgumentOutOfRangeException>(() => game.TrySpend(-20), "Tentar gastar um valor negativo deve gerar uma exceção de segurança.");
     }
 }
